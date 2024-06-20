@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   FormControl,
+  FormHelperText,
   IconButton,
   Input,
   InputAdornment,
@@ -10,7 +11,14 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-const PasswordField = ({ id, label }) => {
+const PasswordField = ({
+  id,
+  label,
+  value,
+  onChange,
+  error = false,
+  helperText,
+}) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -19,11 +27,13 @@ const PasswordField = ({ id, label }) => {
     event.preventDefault();
   };
   return (
-    <FormControl fullWidth variant="standard">
+    <FormControl error={error} fullWidth variant="standard">
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <Input
         id={id}
         type={showPassword ? "text" : "password"}
+        value={value}
+        onChange={onChange}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
@@ -36,6 +46,7 @@ const PasswordField = ({ id, label }) => {
           </InputAdornment>
         }
       />
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 };
