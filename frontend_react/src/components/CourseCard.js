@@ -4,6 +4,11 @@ import StarHalfIcon from "@mui/icons-material/StarHalf";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import React from "react";
 
+const starStyle = {
+  color: "#FFC107",
+  fontSize: "medium",
+};
+
 const CourseCard = ({
   image,
   title,
@@ -38,13 +43,13 @@ const CourseCard = ({
   }
 
   return (
-    <Card sx={{ maxWidth: 300, mt: 5, ml: 5, p: 0.3 }}>
+    <Card sx={{ maxWidth: 300 }}>
       <CardMedia
         component="img"
         alt="course-img"
         height="140"
         image={image}
-        sx={{ border: "0.5px solid #ccc", objectFit: "cover" }}
+        sx={{ objectFit: "cover" }}
       />
       <CardContent>
         <Typography variant="h5" component="div" sx={{ fontWeight: "500" }}>
@@ -60,30 +65,12 @@ const CourseCard = ({
           <Box sx={{ mr: 0.5 }}>
             {starArr.map((value, index) => {
               if (value === 1) {
-                return (
-                  <StarIcon
-                    key={index}
-                    fontSize="small"
-                    sx={{ color: "#FFC107" }}
-                  />
-                );
+                return <StarIcon key={index} sx={starStyle} />;
               }
               if (value === 0) {
-                return (
-                  <StarOutlineIcon
-                    key={index}
-                    fontSize="small"
-                    sx={{ color: "#FFC107" }}
-                  />
-                );
+                return <StarOutlineIcon key={index} sx={starStyle} />;
               } else {
-                return (
-                  <StarHalfIcon
-                    key={index}
-                    fontSize="small"
-                    sx={{ color: "#FFC107" }}
-                  />
-                );
+                return <StarHalfIcon key={index} sx={starStyle} />;
               }
             })}
           </Box>
