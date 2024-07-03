@@ -1,4 +1,3 @@
-import React from "react";
 import NotFoundImg from "../assets/images/404NotFound.png";
 import { CardMedia, Container } from "@mui/material";
 

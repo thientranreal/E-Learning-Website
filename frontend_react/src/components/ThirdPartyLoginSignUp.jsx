@@ -1,8 +1,6 @@
-import { Button } from "@mui/material";
-import React from "react";
+import { Button, useTheme } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { useTheme } from "@emotion/react";
 
 const ThirdPartyLoginSignUp = () => {
   const theme = useTheme();

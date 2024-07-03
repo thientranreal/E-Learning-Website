@@ -1,6 +1,4 @@
-import React from "react";
 import Navbar from "../components/Navbar";
-import CourseCard from "../components/CourseCard";
 import CourseRow from "../components/CourseRow";
 import { Box } from "@mui/material";
 
@@ -60,19 +58,7 @@ const HomePage = () => {
     <div>
       <Navbar />
       <Box display="flex" alignItems="center" justifyContent="center">
-        <CourseRow>
-          {data.map((element) => (
-            <CourseCard
-              key={element.id}
-              id={element.id}
-              image={element.image}
-              title={element.title}
-              author={element.author}
-              starRatings={element.starRatings}
-              numberPeopelRate={element.numberPeopelRate}
-            />
-          ))}
-        </CourseRow>
+        <CourseRow data={data} />
       </Box>
     </div>
   );

@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import React from "react";
+import PropTypes from "prop-types";
 
 const starStyle = {
   color: "#FFC107",
@@ -81,6 +81,14 @@ const CourseCard = ({
       </CardContent>
     </Card>
   );
+};
+
+CourseCard.propTypes = {
+  image: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  starRatings: PropTypes.string,
+  numberPeopelRate: PropTypes.string,
 };
 
 export default CourseCard;

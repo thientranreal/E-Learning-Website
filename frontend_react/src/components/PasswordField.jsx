@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import {
   FormControl,
   FormHelperText,
@@ -49,6 +49,15 @@ const PasswordField = ({
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
+};
+
+PasswordField.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
 };
 
 export default PasswordField;

@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Box, useTheme } from "@mui/material";
 import SearchBar from "./SearchBar";
+import PropTypes from "prop-types";
 
-const MobileSearchBar = ({ theme, handleClear }) => {
+const MobileSearchBar = ({ handleClear }) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -20,6 +21,10 @@ const MobileSearchBar = ({ theme, handleClear }) => {
       ></SearchBar>
     </Box>
   );
+};
+
+MobileSearchBar.propTypes = {
+  handleClear: PropTypes.func,
 };
 
 export default MobileSearchBar;

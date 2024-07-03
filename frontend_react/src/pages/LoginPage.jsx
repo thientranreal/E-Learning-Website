@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PasswordField from "../components/PasswordField";
 import ThirdPartyLoginSignUp from "../components/ThirdPartyLoginSignUp";
 // Import icon
@@ -120,7 +120,7 @@ const LoginPage = () => {
             Login
           </Button>
           <Typography variant="subtitle1">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               to="/register"
               style={{

@@ -1,7 +1,7 @@
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
-import React from "react";
+import PropTypes from "prop-types";
 
 const SearchBar = ({ sx, mobile, handleClear }) => {
   return (
@@ -25,6 +25,12 @@ const SearchBar = ({ sx, mobile, handleClear }) => {
       }}
     />
   );
+};
+
+SearchBar.propTypes = {
+  sx: PropTypes.object,
+  mobile: PropTypes.bool,
+  handleClear: PropTypes.func,
 };
 
 export default SearchBar;
