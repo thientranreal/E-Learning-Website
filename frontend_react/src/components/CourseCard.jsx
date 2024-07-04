@@ -43,7 +43,7 @@ const CourseCard = ({
   }
 
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card sx={{ maxWidth: 300, mt: 5, mb: 5 }}>
       <CardMedia
         component="img"
         alt="course-img"

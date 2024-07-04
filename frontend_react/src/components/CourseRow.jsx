@@ -1,63 +1,45 @@
-import { Box, IconButton } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { useState } from "react";
-import CourseCard from "../components/CourseCard";
+import { Box, Typography } from "@mui/material";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import PropTypes from "prop-types";
+import CourseCard from "../components/CourseCard";
 
-const styleArrowBtn = {
-  position: "absolute",
-  top: "50%",
-  bgcolor: "#2d2f31",
-  color: "white",
-  ":hover": {
-    bgcolor: "#2d2f31",
-    color: "white",
-    opacity: "80%",
-  },
-};
-
-const CourseRow = ({ data, sx }) => {
-  const visibleCourses = 5;
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(4);
-
-  const handleNext = () => {
-    if (endIndex < data.length - 1) {
-      setStartIndex((prevIndex) => prevIndex + 1);
-      setEndIndex((prevIndex) => prevIndex + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (startIndex > 0) {
-      setStartIndex((prevIndex) => prevIndex - 1);
-      setEndIndex((prevIndex) => prevIndex - 1);
-    }
+const CourseRow = ({ data, sx, title, description }) => {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    smallDesktop: {
+      breakpoint: { max: 1325, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 725 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 725, min: 0 },
+      items: 1,
+    },
   };
 
   return (
-    <Box display="flex" position="relative" alignItems="center" sx={sx}>
-      {data.length > visibleCourses && startIndex > 0 && (
-        <IconButton
-          onClick={handlePrev}
-          sx={{
-            left: 0,
-            transform: "translate(-50%, -50%)",
-            ...styleArrowBtn,
-          }}
-        >
-          <ArrowBackIos />
-        </IconButton>
-      )}
-      <Box
-        width={1000}
-        height={300}
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        overflow="hidden"
+    <Box sx={{ ...sx, border: "1px solid #BBBCB6", p: 3 }}>
+      <Typography variant="h4" sx={{ fontWeight: "500" }}>
+        {title}
+      </Typography>
+      <Typography variant="body1" component="p" gutterBottom>
+        {description}
+      </Typography>
+      <Carousel
+        draggable={false}
+        showDots={true}
+        responsive={responsive}
+        infinite={true}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
       >
-        {data.slice(startIndex, endIndex + 1).map((element) => (
+        {data.map((element) => (
           <CourseCard
             key={element.id}
             image={element.image}
@@ -67,26 +49,16 @@ const CourseRow = ({ data, sx }) => {
             numberPeopelRate={element.numberPeopelRate}
           />
         ))}
-      </Box>
-      {data.length > visibleCourses && endIndex < data.length - 1 && (
-        <IconButton
-          onClick={handleNext}
-          sx={{
-            right: 0,
-            transform: "translate(50%, -50%)",
-            ...styleArrowBtn,
-          }}
-        >
-          <ArrowForwardIos />
-        </IconButton>
-      )}
+      </Carousel>
     </Box>
   );
 };
 
 CourseRow.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array.isRequired,
   sx: PropTypes.object,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default CourseRow;

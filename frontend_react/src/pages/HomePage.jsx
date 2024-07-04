@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import CourseRow from "../components/CourseRow";
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 
 const data = [
   {
@@ -57,9 +57,16 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <CourseRow data={data} />
-      </Box>
+      <Container maxWidth="xl">
+        <CourseRow
+          sx={{ mt: 5 }}
+          data={data}
+          title="Title"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nemo
+        blanditiis quam eos quos? Nihil aut quia libero minima, explicabo non
+        voluptates alias! Ipsa cumque iure doloremque, sunt atque vero."
+        />
+      </Container>
     </div>
   );
 };
