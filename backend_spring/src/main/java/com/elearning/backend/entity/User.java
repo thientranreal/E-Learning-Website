@@ -35,4 +35,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<CourseRegistration> courseRegistrations;
+
+    public User(int userId, String username, String email, String passwordHash, Timestamp createdAt) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.createdAt = createdAt;
+    }
 }
