@@ -16,6 +16,8 @@ import {
 } from "@mui/material";
 // Import Link
 import { Link } from "react-router-dom";
+import { loginUser } from "../services/UserService";
+import { isValidEmail } from "../services/Validation";
 
 const LoginPage = () => {
   const theme = useTheme();
@@ -24,6 +26,7 @@ const LoginPage = () => {
   const [error, setError] = useState(null);
 
   const handleLogin = (e) => {
+    const user = {};
     e.preventDefault();
     if (userNameEmail === "") {
       setError({
@@ -39,8 +42,27 @@ const LoginPage = () => {
       });
       return;
     }
+
+    if (isValidEmail(userNameEmail)) {
+      user.email = userNameEmail;
+    } else {
+      user.username = userNameEmail;
+    }
+    user.passwordHash = password;
+    console.log(user);
+
     if (!error) {
-      console.log("FetchAPI");
+      loginUser(user)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          setError({
+            type: "server",
+            info: error.response.data,
+          });
+        });
     }
   };
 
@@ -115,6 +137,10 @@ const LoginPage = () => {
             }}
           />
           {/* End Password Field */}
+
+          <Typography variant="subtitle1" component="div" color="error">
+            {error && error.type === "server" ? error.info : ""}
+          </Typography>
 
           <Button sx={{ mt: 1 }} variant="contained" onClick={handleLogin}>
             Login

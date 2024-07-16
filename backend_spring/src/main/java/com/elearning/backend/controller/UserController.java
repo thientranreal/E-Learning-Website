@@ -20,8 +20,8 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<UserDto> authenticateUser(@RequestBody UserDto userDto) {
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> loginUser(@RequestBody UserDto userDto) {
         UserDto user = new UserDto();
         if (userDto.getEmail() != null) {
             user = userService.getUserByEmail(userDto.getEmail(), userDto.getPasswordHash());
